@@ -178,7 +178,7 @@ public class TaskController {
             // Create a new task with the parsed date
             Tasks newTask = new Tasks(taskid, task, parsedDate);
             service.addTask(newTask);
-            int x = 2;
+            int x = 2,y=3,z=3;
             return ResponseEntity.status(HttpStatus.CREATED).body("Task added successfully!");
 
         } catch (Exception e) {
