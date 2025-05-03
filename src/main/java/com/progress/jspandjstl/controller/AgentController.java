@@ -1,6 +1,7 @@
 package com.progress.jspandjstl.controller;
 
 import com.progress.jspandjstl.model.TaskDTO;
+import com.progress.jspandjstl.model.Tasks;
 import com.progress.jspandjstl.service.ITaskService;
 import com.progress.jspandjstl.service.implementation.ServiceRouter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class AgentController {
     @GetMapping("/agent/{type}")
     public ResponseEntity<List<TaskDTO>> getTasks(@PathVariable("type") String type){
         return new ResponseEntity<>(serviceRouter.getTaskService(type).getTasks(), HttpStatus.OK);
+    }
+    @GetMapping("/agent/{type}/{id}")
+    public ResponseEntity<Tasks> getsTasks(@PathVariable("type") String type, @PathVariable("id") Integer id){
+        return new ResponseEntity<>(serviceRouter.getTaskService(type).getTask(id), HttpStatus.OK);
     }
 }

@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: winner12345678910
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: first_springboot_docker
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/test
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: winner12345678910
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+volumes:
+  db_data:
